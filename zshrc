@@ -9,6 +9,9 @@ plugins=(git gitfast last-working-dir common-aliases sublime zsh-syntax-highligh
 # (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
 
+# yarn global modules:
+export PATH="${PATH}:${HOME}/.yarn/bin"
+
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
@@ -59,3 +62,15 @@ export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 # Encoding stuff for the terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
+
+# added by travis gem
+[ ! -s /home/yair/.travis/travis.sh ] || source /home/yair/.travis/travis.sh
+
+# ibus config
+[ ! -s ~/bin/ibus.sh ] || source ~/bin/ibus.sh
+
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
